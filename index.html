@@ -3,18 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Etch-A-Sketch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Kufam:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
+    
 </head>
 <body>
-    <div class="flexin">
-        <div class="container"></div>
-    </div>
+   <header><h1>ETCH-A-SKETCH</h1></header>
+<main>
+    
+                
+    <div class="sidebar"> 
+    <button  class= "btn active" id ="black">Black color</button>
+    <button class= "btn"  id ="rainbow">Rainbow color</button>
+    <button class= "btn"  id = "eraser">Eraser</button>
+    <button id = "clear">Clear</button>
+    <button class="btn btn2">Color Palette <input id="colorPicker" type="color" value="#ffffff" /></button>
+    
+</div>
+<div class="container"></div>
+  
+</main>
+
+<div id= "size-bar"> 
     <input id='size' type='range' min='2' max='100' value='16'>
     <output id="output">16</output>
-    <button id="resize">Resize</button>
-    <button id ="rainbow">Rainbow color</button>
-    <button id = "grey-scale">Grey scale</button>
+</div>
+<footer>       <p>
+    Copyright ©
+    <script>
+      document.write(new Date().getFullYear())
+    </script>
+  </p>
+ </footer>
     <script src="main.js"></script>
 </body>
 </html>

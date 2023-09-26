@@ -1,97 +1,117 @@
 const container = document.querySelector(".container");
 const size = document.querySelector("#size");
+const blackButton = document.querySelector("#black");
 const resizeButton = document.querySelector("#resize");
-const rainbowButton = document.querySelector("#rainbow")
-const greyScaleButton = document.querySelector("#grey-scale")
+const rainbowButton = document.querySelector("#rainbow");
+const eraserButton = document.querySelector("#eraser");
+const clearButton = document.querySelector("#clear");
+const colorPicker = document.getElementById("colorPicker");
+let littleDivs;
+let event1 = false;
+let event2 = false;
+let printColor = "black";
+let btns = document.querySelectorAll("button");
 
-createAndPaint(16);
-colorTheSquares();
-
-
-// make a loop to create a grid with x number of divs 
-function createAndPaint(sizeOfSquares) {
-  for (let i = 0; i < sizeOfSquares * sizeOfSquares; i++) {
-    const square = document.createElement("div");
-    square.style.flexBasis = `calc(100% / ${sizeOfSquares})`;
+// make a loop to create a grid with x number of divs
+function createAndPaint(numberOfSquares) {
+  for (let i = 0; i < numberOfSquares * numberOfSquares; i++) {
+    let square = document.createElement("div");
+    square.style.flexBasis = `calc(100% / ${numberOfSquares})`;
     square.style.boxSizing = "border-box";
-    square.style.border = "1px solid red"
+    square.style.border = "0.5px solid rgb(0,0,0,0.1)";
     //  square.classList.add("grid");
+    square.classList.add("square-element");
     container.appendChild(square);
-  littleDivs = document.querySelectorAll(".container>div");
+    littleDivs = document.querySelectorAll(".square-element");
   }
 }
 
+createAndPaint(16); // creates the first grid on page load
 
-function colorTheSquarez(functionColor) {
- 
-  littleDivs.forEach((div) =>{
-      div.addEventListener("mouseenter", () => {
-        div.style.backgroundColor = functionColor();
-        
-      });
-  }) 
-  }
-
-  
-// paint each square with the black color 
-function colorTheSquares() {
-littleDivs.forEach((div) => {
-  div.addEventListener("mouseenter", () => {
-    div.classList.add("grid-color");
-    
-  });
+// pen working on page load
+container.addEventListener("mouseover", (event) => {
+  checkprint(event, printColor);
 });
+
+//PEN ACTIVE
+function checkprint(element, color) {
+  if (element.buttons === 1 && element.target.classList == "square-element") {
+    element.target.style.backgroundColor = color;
+  }
 }
 
-
+// RANGE BAR
 // show number besides range bar
 size.addEventListener("input", () => {
   let val = size.value;
   document.getElementById("output").innerText = val;
-});
-
-// clear and create a new grid with given number from range bar
-resizeButton.addEventListener("click", () => {
-    container.replaceChildren();
+  container.replaceChildren();
   createAndPaint(size.value);
-  colorTheSquares();
 });
 
- 
+
+// RAINBOW COLOR FUNCTION & BUTTON WORKING
 let nextIndex = 0;
-function rainbowColored () {
- let rainbowColors = ["#9400D3", "#4B0082", "#0000FF", "#00FF00", "#FFFF00", "#FF7F00", "#FF0000"]
- if ( nextIndex >= rainbowColors.length ) {   // make sure it doesn't get higher than the length.
-        nextIndex = 0;
-    }
-    nextIndex++;
-    return rainbowColors[nextIndex-1];
-
+function rainbowColored() {
+  let rainbowColors = [
+    "#9400D3",
+    "#4B0082",
+    "#0000FF",
+    "#00FF00",
+    "#FFFF00",
+    "#FF7F00",
+    "#FF0000",
+  ];
+  if (nextIndex >= rainbowColors.length) {
+    // make sure it doesn't get higher than the length.
+    nextIndex = 0;
+  }
+  nextIndex++;
+  return rainbowColors[nextIndex - 1];
 }
-
-
+// rainbow button
 rainbowButton.addEventListener("click", () => {
-  container.replaceChildren();
-createAndPaint(size.value);
-colorTheSquarez(rainbowColored);
+  container.addEventListener("mouseover", (event) => {
+    checkprint(event, rainbowColored());
+  });
 });
 
-let blackIndex = 0
-function scaleBlack () {
-  let blackColors = ["rgba(0, 0, 0, 0.2)", "rgba(0, 0, 0, 0.4)", "rgba(0, 0, 0, 0.6)", "rgba(0, 0, 0, 0.8)","rgba(0, 0, 0, 1)"]
-  if ( blackIndex >= blackColors.length ) {   // make sure it doesn't get higher than the length.
-         blackIndex = 0;
-     }
-     blackIndex++;
-     return blackColors[blackIndex-1];
- 
-}
+// BLACK PEN COLOR
+blackButton.addEventListener("click", () => {
+  container.addEventListener("mouseover", (event) => {
+    checkprint(event, "rgba(0,0,0,1)");
+  
+  });
+});
 
+// ERASER
+eraserButton.addEventListener("click", () => {
+  container.addEventListener("mouseover", (event) => {
+    checkprint(event, "rgb(234, 220, 255)");
+  });
+});
 
-greyScaleButton.addEventListener("click",()  => {
+// CLEAR BUTTON
+clearButton.addEventListener("click", () => {
   container.replaceChildren();
   createAndPaint(size.value);
-  colorTheSquarez(scaleBlack);
+});
 
-})
+// COLOR PICKER
+colorPicker.addEventListener("input", (e) => {
+  container.addEventListener("mouseover", (event) => {
+    
+    checkprint(event, e.target.value);
+  
+  });
+});
 
+// BUTTON ACTIVE
+
+for (let i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    let current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
