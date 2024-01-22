@@ -10,14 +10,11 @@ body {
 }
 
 h1 {
-
   font-family: 'DynaPuff', cursive;
   font-size: 50px;
-
   letter-spacing: 1rem;
   color: rgb(218, 191, 255);
-
-  text-shadow: 1px 1px 1px #DABFFF, 0 0 4px #907AD6, 0 0 0.2em #907AD6;
+  text-shadow: 1px 1px 1px #201430, 0 0 4px #19142c, 0 0 0.2em #201936;
 
 }
 
@@ -30,8 +27,8 @@ h1 {
   color: #715db4;
   font-family: 'Kufam', sans-serif;
   font-size: 16px;
-  box-shadow: rgb(218, 191, 255) 0 0 5px;
-  text-shadow: 1px 1px 1px #907AD6, 0 0 4px #DABFFF, 0 0 0.2em #DABFFF;
+  font-weight: 700;
+  box-shadow: 0px 0px 1px 0.5px rgba(0,0,0,0.5);
 
 }
 
@@ -55,13 +52,13 @@ main {
 .container {
   display: flex;
   flex-wrap: wrap;
-  width: 650px;
-  height: 650px;
+  width: 35vw;
+  height: 35vw;
 
   min-width: 300px;
 
   background-color: rgb(234, 220, 255);
-  box-shadow: rgb(218, 191, 255) 0 0 7px;
+  box-shadow: 0px 0px 8px 3px rgba(0,0,0,0.5);
 
 }
 
