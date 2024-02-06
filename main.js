@@ -6,7 +6,6 @@ const rainbowButton = document.querySelector("#rainbow");
 const eraserButton = document.querySelector("#eraser");
 const clearButton = document.querySelector("#clear");
 const colorPicker = document.getElementById("colorPicker");
-let littleDivs;
 let event1 = false;
 let event2 = false;
 let printColor = "black";
@@ -22,7 +21,6 @@ function createAndPaint(numberOfSquares) {
     //  square.classList.add("grid");
     square.classList.add("square-element");
     container.appendChild(square);
-    littleDivs = document.querySelectorAll(".square-element");
   }
 }
 
